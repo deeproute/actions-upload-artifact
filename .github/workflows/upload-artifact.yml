@@ -1,0 +1,28 @@
+name: Challenge03 - Using Actions
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  upload-artifact:
+    name: 'Print Date - Ubuntu'
+    runs-on: ubuntu-latest
+    env:
+      ARTIFACT_NAME: 'My Artifact'
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        # Artifact name
+        name: ${{ env.ARTIFACT_NAME }}
+        # A file, directory or wildcard pattern that describes what to upload
+        path: .
+  
